@@ -1,0 +1,278 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
+
+    --primary: 24 95% 53%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 46 100% 85%;
+    --secondary-foreground: 0 0% 10%;
+
+    --muted: 215 19% 95%;
+    --muted-foreground: 215 19% 34%;
+
+    --accent: 46 100% 85%;
+    --accent-foreground: 0 0% 10%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 46 100% 60%;
+    --input: 46 100% 60%;
+    --ring: 24 95% 53%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
+    --primary: 24 95% 53%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 46 100% 85%;
+    --secondary-foreground: 0 0% 10%;
+    --muted: 215 19% 95%;
+    --muted-foreground: 215 19% 34%;
+    --accent: 46 100% 85%;
+    --accent-foreground: 0 0% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 46 100% 60%;
+    --input: 46 100% 60%;
+    --ring: 24 95% 53%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+    font-size: 16px;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    overflow-x: hidden;
+    font-family: theme("fontFamily.sans");
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.6;
+    letter-spacing: -0.01em;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+    text-wrap: balance;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+  }
+}
+
+h3 code {
+  @apply !text-lg md:!text-xl;
+}
+
+pre {
+  @apply !px-0 rounded-lg overflow-x-auto py-4
+}
+
+pre [data-line] {
+  @apply px-4
+}
+
+code {
+  @apply text-sm md:text-base !leading-loose;
+}
+
+pre>code {
+  counter-reset: line;
+}
+
+code[data-theme*=" "],
+code[data-theme*=" "] span {
+  color: var(--shiki-light);
+  background-color: var(--shiki-light-bg);
+}
+
+@media (prefers-color-scheme: dark) {
+
+  code[data-theme*=" "],
+  code[data-theme*=" "] span {
+    color: var(--shiki-dark);
+    background-color: var(--shiki-dark-bg);
+  }
+}
+
+code[data-line-numbers] {
+  counter-reset: line;
+}
+
+code[data-line-numbers]>[data-line]::before {
+  counter-increment: line;
+  content: counter(line);
+  @apply inline-block w-4 mr-4 text-right text-gray-500;
+}
+
+code {
+  counter-reset: line;
+}
+
+code>[data-line]::before {
+  counter-increment: line;
+  content: counter(line);
+
+  /* Other styling */
+  display: inline-block;
+  width: 1rem;
+  margin-right: 2rem;
+  text-align: right;
+  color: gray;
+}
+
+code[data-line-numbers-max-digits="2"]>[data-line]::before {
+  width: 2rem;
+}
+
+code[data-line-numbers-max-digits="3"]>[data-line]::before {
+  width: 3rem;
+}
+
+/* Animated social icon buttons */
+.social-icon-btn {
+  position: relative;
+  background: hsl(var(--secondary));
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.68,-0.55,0.265,1.55);
+  color: hsl(var(--foreground));
+  text-decoration: none;
+  flex-shrink: 0;
+}
+.social-icon-btn.\!size-9 { width: 36px; height: 36px; }
+.social-icon-btn.\!size-11 { width: 44px; height: 44px; }
+@media (max-width: 640px) {
+  .social-icon-btn { width: 38px; height: 38px; }
+}
+.social-icon-btn:hover { transform: translateY(-4px); }
+.social-icon-tip {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 11px;
+  font-weight: 800;
+  background: hsl(var(--foreground));
+  color: hsl(var(--background));
+  padding: 4px 8px;
+  border-radius: 5px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.25s cubic-bezier(0.68,-0.55,0.265,1.55);
+}
+.social-icon-tip::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 7px; height: 7px;
+  background: inherit;
+}
+.social-icon-btn:hover .social-icon-tip { top: -38px; opacity: 1; }
+.social-icon-btn.si-github:hover { background: #24292e; color: #fff; }
+.social-icon-btn.si-github:hover .social-icon-tip { background: #24292e; color: #fff; }
+.social-icon-btn.si-linkedin:hover { background: #0A66C2; color: #fff; }
+.social-icon-btn.si-linkedin:hover .social-icon-tip { background: #0A66C2; color: #fff; }
+.social-icon-btn.si-x:hover { background: #000; color: #fff; }
+.social-icon-btn.si-x:hover .social-icon-tip { background: #000; color: #fff; }
+.social-icon-btn.si-youtube:hover { background: #FF0000; color: #fff; }
+.social-icon-btn.si-youtube:hover .social-icon-tip { background: #FF0000; color: #fff; }
+.social-icon-btn.si-instagram:hover { background: #E4405F; color: #fff; }
+.social-icon-btn.si-instagram:hover .social-icon-tip { background: #E4405F; color: #fff; }
+
+/* Hide scrollbar utility (both naming conventions supported) */
+.scrollbar-hide::-webkit-scrollbar,
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide,
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+body.skills-drawer-open header {
+  display: none !important;
+}
+
+/* Pulse subtle animation for AI chatbot button */
+@keyframes pulse-subtle {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 2s infinite ease-in-out;
+}
+@keyframes wave {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+
+  20% {
+    transform: rotate(18deg);
+  }
+
+  40% {
+    transform: rotate(-12deg);
+  }
+
+  60% {
+    transform: rotate(14deg);
+  }
+
+  80% {
+    transform: rotate(-8deg);
+  }
+}
