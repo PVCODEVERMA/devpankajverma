@@ -79,7 +79,7 @@ export default function Navbar() {
           <Tooltip>
             <TooltipTrigger asChild>
               <Link
-                href="https://drive.google.com/file/d/1MgWAVuATbqZ6tZrnKP7bqKOckXv3ZWQp/view?usp=sharing"
+                href="https://drive.google.com/file/d/1MujtNjnOq8gzEYd-O5l6OC1Gkfd4VgXx/view?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={cn(
